@@ -1,0 +1,82 @@
+Corona Image Editor - command-line interface - 12 Update 1 (Hotfix 1)
+Chaos Czech a.s., 2014-2025
+www.corona-renderer.com
+
+Usage:
+    CoronaImageCmd [arguments] <input image> [other input images] <output image>
+        Process all given input images according to arguments and write result to output image.
+
+    CoronaImageCmd --list-examples
+        Print examples of usage.
+
+    CoronaImageCmd --list-properties
+        Print all recognized configuration properties.
+
+Options:
+        --list-properties    Prints descriptions of all properties recognized by the --set and
+                             --config arguments. See the information for those arguments for further
+                             details.
+
+        --list-examples      Prints some example usage.
+
+        --batch              Processes images independently. Every provided image must be followed
+                             by the output file. With this argument, <weight> argument can't be
+                             used, as that is used for multiple input files being processed together
+                             to generate one output file.
+
+    -w, --weight=<value>     Sets a weight, or weights, to use while merging/stitching multiple
+                             images into one.
+                             If more than one input image is given, the editor will compose each
+                             pixel as a weighted arithmetic mean of corresponding pixels retrieved
+                             from the input images. Using this argument you can define a single
+                             weight for all input images, or define a different weight for each
+                             individual image (specify the argument multiple times).
+                             Each weight could be either -
+                             A float constant for a whole image (use the dot as a decimal
+                             separator):
+                             --weight "<float constant> [--weight <float constant>...]"
+                             Or the name of a special channel containing float weight values for
+                             each pixel (prefix the name with the percent sign):
+                             --weight "%<channel name> [--weight %<channel name>...]"
+                             If no --weight argument is given, all input images will be
+                             merged/stitched using a weight channel named CORONA_FB_WEIGHTS that is
+                             present in all renders made by Chaos Corona.
+
+    -e, --element=<value>    Default value: *
+                             Selects a render element that should be processed and saved.
+                             It could be either -
+                             The name of a single render element as it is presented in the GUI
+                             version of the editor, for instance the beauty render element:
+                             --element "BEAUTY"
+                             Or the asterisk symbol for selecting all render elements at once:
+                             --element "*"
+                             If no --element argument is given, the second variant is the default.
+
+    -s, --set=<value>        Overrides the value of some selected property.
+                             All image operations that the editor can perform are controlled by
+                             properties. The value of each property arises independently from the
+                             following precedence list (the latter ones automatically override the
+                             previous ones):
+                             (1) global default value defined by Chaos Corona
+                             (2) default value loaded from the input image, if it is in Corona EXR
+                             format and the value is present there
+                             (3) value set by the right-most --set or --config argument on the
+                             command-line
+                             The argument expects a formatted string in the following form:
+                             --set "<property type> <property name> = <property value>"
+                             All bool values are expected to be either "true" or "false". Float
+                             values must use dots as decimal separators. Colors are expected as
+                             float triplets separated by spaces. Integer values can sometimes be
+                             replaced by predefined string constants. Use the --list-properties
+                             argument for further details.
+
+    -c, --config=<path>      Loads a configuration file to override the values of some properties.
+                             It expects a path to some configuration file previously exported from
+                             the GUI version of the editor, or from Chaos Corona's VFB:
+                             --config "C:\Path\To\File.conf"
+                             In all other aspects, it behaves in the same way as the --set argument.
+
+    -h, --help               Show this help message.
+
+        --version            Show version & application information.
+

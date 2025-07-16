@@ -1,0 +1,277 @@
+Corona Image Editor - command-line interface - 12 Update 1 (Hotfix 1)
+Chaos Czech a.s., 2014-2025
+www.corona-renderer.com
+Tone mapping properties:
+
+    Float colorMap.iso
+        > Controls camera ISO speed. This is used to calculate exposure when the photographic exposure is
+        > turned on. The ISO is expected to lie between 0.00100000005 and 999999. The global default is 100
+        > which could be overridden by the input image.
+
+
+Bloom and Glare properties:
+
+    Float bloomGlare.bloomIntensity
+        > Defines the linear scaling of the bloom effect. If the intensity is equal to 0, the bloom effect is
+        > disabled. The intensity can go to infinity. The global default is 1 which could be overridden by the
+        > input image.
+
+    Float bloomGlare.glareIntensity
+        > Defines the linear scaling of the glare effect. If the intensity is equal to 0, the glare effect is
+        > disabled. The intensity can go to infinity. The global default is 1 which could be overridden by the
+        > input image.
+
+    Int bloomGlare.streakCount
+        > Controls the number of streaks for the glare effect. It could be from 1 up to 8 streaks. The global
+        > default is 3 which could be overridden by the input image.
+
+    Float bloomGlare.rotation
+        > Rotates the glare effect in degrees. All real values are possible. The global default is 15 degrees
+        > which could be overridden by the input image.
+
+    Float bloomGlare.streakBlur
+        > Controls the blurring of the glare streak perpendicular to the streak direction. The value is
+        > expected to lie between 0 and 1. The global default is 0.200000003 which could be overridden by the
+        > input image.
+
+    Float bloomGlare.colorIntensity
+        > Defines the intensity of the color shifting effect. Intensity equal to 0 completely disables the
+        > effect, while intensity equal to 1 results in full strength of the effect. The global default is
+        > 0.300000012 which could be overridden by the input image.
+
+    Float bloomGlare.colorShift
+        > Alternates the colors produced by the color shifting effect (which is controlled by the color
+        > intensity property). Values from 0 to 1 are available. The global default is 0.5 which could be
+        > overridden by the input image.
+
+    Float bloomGlare.threshold
+        > Only pixels brighter than this threshold are affected by the bloom and glare effects. The threshold
+        > can go from 0 to infinity. The global default is 1 which could be overridden by the input image.
+        > Increase this value to make the effects more localized around only the brightest light sources.
+
+    Bool bloomGlare.enabled
+        > Applies both the bloom and glare effects. The global default is "false" which could be overridden by
+        > the input image.
+
+    Float bloomGlare.size
+        > Defines the size of bloom and glare effect in percentage of render size. The global default is "15"
+        > which could be overridden by the input image.
+
+    Bool lensEffects.useLegacyEffect
+        > Enables legacy (v5) version of the bloom and glare effect. The global default is "false" which could
+        > be overridden by the input image.
+
+    Bool lensEffects.customAperture
+        > Enables custom aperture shape for more advanced control of the glare effect. The global default is
+        > "false" which could be overridden by the input image.
+
+    Bool lensEffects.aperture.useBlades
+        > When set, bladed aperture (i.e. regular polygon) is used instead of circular one. The global default
+        > is "true" which could be overridden by the input image.
+
+    Int lensEffects.aperture.sides
+        > Number of aperture blades used for custom aperture. Value can be between 3 and 16, the global
+        > default is 6 which could be overridden by the input image.
+
+    Float lensEffects.aperture.rotation
+        > Rotation of bladed aperture in degrees, with global default 0 which could be overridden by the input
+        > image.
+
+    Bool lensEffects.peripheralGrating.enabled
+        > Enable peripheral grating effect on aperture mask (simulates aperture degradation). This creates
+        > "halo" effect around lights in render. The global default is "false" which could be overridden by
+        > the input image.
+
+    Float lensEffects.peripheralGrating.density
+        > Ratio of the aperture perimeter filled with grating lines. Value of 1 causes aperture perimeter to
+        > be fully covered by grating without spaces. The global default is 0.5 which could be overridden by
+        > the input image.
+
+    Float lensEffects.peripheralGrating.length
+        > Length of the grating lines. Value of 10 equals to lines of the length of aperture diameter, the
+        > global default is 0.300000012 which could be overridden by the input image.
+
+    Float lensEffects.peripheralGrating.zoom
+        > Zoom of the whole grating effect. Value of 1 means no zoom, value of 10 means 10x zoom. The global
+        > default is 5 which could be overridden by the input image.
+
+    Float lensEffects.peripheralGrating.slope
+        > Controls the direction of grate lines in degrees in range from 0 to 90. The global default is 0
+        > which could be overridden by the input image.
+
+    Float lensEffects.peripheralGrating.strength
+        > Strength of the peripheral grating effect with 0 disabling the effect and 1 being the full effect
+        > strength. The global default is 1 which could be overridden by the input image.
+
+    Bool lensEffects.occlusion.enabled
+        > Enables occlusion of part of aperture shape. The global default is "false" which could be overridden
+        > by the input image.
+
+    Bool lensEffects.occlusion.symmetric
+        > When enabled, occlusion is applied symmetrically from both sides of the aperture. The global default
+        > is "true" which could be overridden by the input image.
+
+    Float lensEffects.occlusion.ratio
+        > Controls ratio of aperture being occluded, with value of 0 meaning no occlusion and 1 meaning full
+        > occlusion. The global default is 0.200000003 which could be overridden by the input image.
+
+    Float lensEffects.occlusion.rotation
+        > Rotation of the occlusion in degrees. The global default is 0 which could be overridden by the input
+        > image.
+
+    Float lensEffects.occlusion.arc
+        > The arc of occlusion with 0 being straight line and 1 being full arc. The global default is 1 which
+        > could be overridden by the input image.
+
+    Bool lensEffects.scratches.enabled
+        > Simulates scratches over lens. Regular scratches can create additional glare effects, while
+        > irregular ones will affect shape and blur of existing glare effect. The global default is "false"
+        > which could be overridden by the input image.
+
+    Int lensEffects.scratches.pattern
+        > The pattern of scratches. The global default is 0 which could be overridden by the input image.
+
+    Bool lensEffects.scratches.symmetric
+        > When enabled, streaks are stemming from one point with equal angles. The global default is "true"
+        > which could be overridden by the input image.
+
+    Int lensEffects.scratches.streaks
+        > Number of streaks that are clustered together in Random pattern. This can create additional glare
+        > streaks. Value can range from 1 to 12, the global default is 1 which could be overridden by the
+        > input image.
+
+    Float lensEffects.scratches.density
+        > Density of the scratches with 0 meaning no scratches and 1 having scratches fully cover whole
+        > aperture. The global default is 0.5 which could be overridden bythe input image.
+
+    Float lensEffects.scratches.length
+        > Length of the scratches. Value can be in range from 0 to 1. The global default is 0.5 which could be
+        > overridden by the input image.
+
+    Int lensEffects.scratches.seed
+        > Changes randomization of the scratches. The global default is 0 which could be overridden by the
+        > input image.
+
+    Float lensEffects.scratches.slopeVar
+        > Randomizes the direction of the scratches, with value of 0 meaning no variance in scratches slope
+        > and value of 1 fully random slope of scratches. The global default is 0 which could be overridden by
+        > the input image.
+
+    Float lensEffects.scratches.widthVar
+        > Randomizes the width of the scratches, with value of 0 meaning no variance in scratches width and
+        > value of 1 fully random width of scratches. The global default is 0 which could be overridden by the
+        > input image.
+
+    Float lensEffects.scratches.zoom
+        > Zoom of the whole pattern of scratches. Value of 1 means no zoom, value of 10 means 10x zoom. The
+        > global default is 2 which could be overridden by the input image.
+
+    Float lensEffects.scratches.rotation
+        > Rotation of the pattern of scratches in degrees. The global default is 0 which could be overridden
+        > by the input image.
+
+    Float lensEffects.scratches.strength
+        > Strength of the scratches effect with 0 disabling the effect and 1 being the full effect strength.
+        > The global default is 1 which could be overridden by the input image.
+
+    Bool lensEffects.dust.enabled
+        > Simulates dust particles over lens. Dust can create effect similar to bloom that is affected by
+        > overall pattern of generated particles. The global default is "false" which could be overridden by
+        > the input image.
+
+    Int lensEffects.dust.pattern
+        > The pattern of dust particles. The global default is 0 which could be overridden by the input image.
+
+    Float lensEffects.dust.density
+        > Density of dust particles with 0 meaning no particles and 1 having particles fully cover whole
+        > aperture. The global default is 0.5 which could be overridden bythe input image.
+
+    Float lensEffects.dust.radiusVar
+        > Randomizes the radii of dust particles. Value of 0 means all particles will have the same radius,
+        > value of 1 fully randomizes radii. The global default is 0 which could be overridden by the input
+        > image.
+
+    Float lensEffects.dust.jitter
+        > Randomizes the positions of the dust particles. Value of 0 means regular placement of particles
+        > based on dust pattern, value of 1 means random placement. The global default is 0 which could be
+        > overridden by the input image.
+
+    Float lensEffects.dust.zoom
+        > Zoom of the whole dust pattern. Value of 1 means no zoom, value of 10 means 10x zoom. The global
+        > default is 2 which could be overridden by the input image.
+
+    Float lensEffects.dust.rotation
+        > Rotation of the pattern of generated dust particles in degrees. The global default is 0 which could
+        > be overridden by the input image.
+
+    Float lensEffects.dust.strength
+        > Strength of the dust effect with 0 disabling the effect and 1 being the full effect strength. The
+        > global default is 1 which could be overridden by the input image.
+
+
+Sharpening/blurring properties:
+
+    Float sharpening.amount
+        > Defines the strength of the sharpening. The amount is expected to lie between 0 and 10. If it is
+        > greater than 0 the image is sharpened. The global default is 1 which could be overridden by the
+        > input image.
+
+    Float sharpening.radius
+        > Controls a pixel radius used for sharpening. It corresponds to the size of the high-frequency
+        > detector. The radius could be from 0 to 50. The global default is 0.5 which could be overridden by
+        > the input image.
+
+    Float blurring.radius
+        > Controls a pixel radius used for blurring. It corresponds to the size of the blurring window. The
+        > radius could be from 0 to 50. The global default is 1.33000004 which could be overridden by the
+        > input image.
+
+    Bool sharpening.blurring.enable
+        > Enables both sharpening and blurring the image. The global default is "false" which could be
+        > overridden by the input image.
+
+
+Denoising properties:
+
+    Bool denoise.blendEnabled
+        > Defines an on/off switch for blending of the denoised image. When disabled, the result is the same
+        > as with blend amount equal to zero.
+
+    Float denoise.blendAmount
+        > Defines an amount, between 0 and 1, of blending between the original image and its denoised variant.
+        > The global default is 0.649999976 which could be overridden by the input image.
+
+    Int denoise.filterType
+        > Selects a denoising mode, i.e. the type of noise reduction filter. It can be set to either to the
+        > "Full" constant for full-featured denoising, or to the "Fireflies" constant to remove fireflies
+        > (high intensity pixels) only. The global default is the "None" constant which could be overridden by
+        > the input image.
+
+    Float denoise.sensitivity
+        > Controls the sensitivity of the denoising to details. It has nothing to do with rendering or
+        > gathering denoising data by Chaos Corona. In the GUI version of the editor this property is called
+        > denoising radius. The sensitivity is expected to lie between 0.100000001 and 10. A larger
+        > sensitivity results in more aggressive filtering (which could result in greater blurring of details
+        > in textures, etc.). The global default is 1 which could be overridden by the input image.
+
+
+LightMix properties:
+
+    Vec3Array colorMap.lightmixColors
+        > Defines a color multiplier for each light select of the LightMix. They are expected to be separated
+        > by commas. The light selects are ordered in the same way as in the GUI version of the editor. The
+        > global default is a white color (1 1 1) for all the light selects, which could be overridden by the
+        > input image.
+
+    FloatArray colorMap.lightmixIntensities
+        > Defines an intensity multiplier for each light select of the LightMix. They are expected to be
+        > separated by commas. The light selects are ordered in the same way as in the GUI version of the
+        > editor. The global default is 1 for all the light selects, which could be overridden by the input
+        > image.
+
+    BoolArray colorMap.lightmixEnabledLayers
+        > Defines an on/off switch for each light select of the LightMix. They are expected to be either 1 or
+        > 0, separated by commas. The light selects are ordered in the same way as in the GUI version of the
+        > editor. The global default is 1 for all the light selects, which could be overridden by the input
+        > image.
+

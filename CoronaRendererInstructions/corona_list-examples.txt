@@ -1,0 +1,95 @@
+Corona Image Editor - command-line interface - 12 Update 1 (Hotfix 1)
+Chaos Czech a.s., 2014-2025
+www.corona-renderer.com
+Example usage:
+
+    1) Load a single input image in Corona EXR format (CXR) and save it to PNG
+    format. Before saving the image, it will be automatically processed
+    according to any settings that are loaded from the input image itself (a
+    feature specific to CXR images). See the --set argument for further
+    details.
+    The alpha channel will be saved automatically if the input image contains
+    it. Each render element of the input image will be saved to a separate
+    output image.
+    Note that the backslash character marks only transition of the command to
+    a new line - it is not part of the command itself.
+
+        CoronaImageCmd.exe \
+        Input.cxr Output.png
+
+    2) Similar to the above but before saving the image, explicitly apply
+    bloom and glare effects and map tones using some non-zero exposure.
+
+        CoronaImageCmd.exe \
+        --set "Bool bloomGlare.enabled = true" \
+        --set "Float bloomGlare.bloomIntensity = 10" \
+        --set "Float bloomGlare.glareIntensity = 10" \
+        --set "Float colorMap.simpleExposure = 1.5" \
+        Input.cxr Output.png
+
+    3) Denoise only the beauty element of the input image using \"High quality\"
+    denoising mode. Save the element alone (both its denoised and non-denoised
+    variants) back to the Corona EXR format to allow further processing by the
+    editor. See the --element argument for further details on how elements can
+    be selected.
+
+        CoronaImageCmd.exe \
+        --set "Int denoise.filterType = Full" \
+        --element "BEAUTY" \
+        Input.cxr OutputBeauty.cxr
+
+    4) Denoise all render elements present in the input image. If some element
+    is not denoisable, a warning will be printed and the editor will continue
+    with the next element. The denoising mode is not being set by the --set
+    argument as above, but through the given configuration file (which may
+    introduce some other settings too).
+
+        CoronaImageCmd.exe \
+        --config DenoisingSettings.conf \
+        --element "*" \
+        Input.cxr Output.cxr
+
+    5) Merge input images from several render nodes. Weights of the images (or
+    more precisely of each of their pixels - see the --weights argument for
+    more details) are loaded automatically from the default weight channel
+    CORONA_FB_WEIGHTS. This channel is expected to be stored in all the input
+    images.
+
+        CoronaImageCmd.exe \
+        Input1.cxr Input2.cxr Input3.cxr Output.cxr
+
+    6) Same as above, but using a different weight for each of the input
+    images - a float constant for the first and third image, and the default
+    weight channel for the second image.
+
+        CoronaImageCmd.exe \
+        --weight 84 \
+        --weight %CORONA_FB_WEIGHTS \
+        --weight 117 \
+        Input1.cxr Input2.cxr Input3.cxr Output.cxr
+
+    7) Remove high intensity pixels in one particular render element of an
+    image merged directly from several input images. If the element does not
+    exist, the editor will report an error, and the output CXR will not be
+    created.
+
+        CoronaImageCmd.exe \
+        --set "Int denoise.filterType = Fireflies" \
+        --element "some element name" \
+        Input1.cxr Input2.cxr Input3.cxr OutputElement.cxr
+
+    8) Use the LightMix feature and mix together lights from two light selects
+    multiplied by the given intensities and colors. The third light select is
+    disabled (note that values for intensity and color must still be provided
+    for disabled light selects, but will have no effect on the result). Save
+    the resulting mixture into an output image using the regular EXR format.
+    Denoise the light selects first.
+
+        CoronaImageCmd.exe \
+        --set "BoolArray colorMap.lightmixEnabledLayers = 1, 1, 0" \
+        --set "FloatArray colorMap.lightmixIntensities = 0.5, 3, 1" \
+        --set "Vec3Array colorMap.lightmixColors = 0 0 1, 1 0 0, 1 1 1" \
+        --set "Int denoise.filterType = Full" \
+        --element "LightMix Interactive" \
+        Input.cxr Output.exr
+
