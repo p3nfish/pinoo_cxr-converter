@@ -78,6 +78,7 @@ missing module named trove_classifiers - imported by setuptools.config._validate
 missing module named 'setuptools.extern.packaging.specifiers' - imported by setuptools.config.setupcfg (top-level), setuptools.config._apply_pyprojecttoml (delayed)
 missing module named importlib_metadata - imported by setuptools._importlib (delayed, optional)
 missing module named pyimod02_importers - imported by C:\Users\Penfsih\AppData\Local\Programs\Python\Python310\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgutil.py (delayed), C:\Users\Penfsih\AppData\Local\Programs\Python\Python310\Lib\site-packages\PyInstaller\hooks\rthooks\pyi_rth_pkgres.py (delayed)
+missing module named tkinterdnd2 - imported by D:\IT\Pinoo\Script CXR Convert\05 git beta\pinoo_script.py (top-level)
 missing module named fcntl - imported by subprocess (optional), psutil._compat (delayed, optional)
 missing module named dummy_threading - imported by psutil._compat (optional)
 missing module named _dummy_thread - imported by numpy.core.arrayprint (optional), cffi.lock (conditional, optional)
